@@ -1,0 +1,15 @@
+/Users/dani/Projects/ChatApp/ChatApp/bin/Debug/net6.0/ChatApp
+/Users/dani/Projects/ChatApp/ChatApp/bin/Debug/net6.0/ChatApp.deps.json
+/Users/dani/Projects/ChatApp/ChatApp/bin/Debug/net6.0/ChatApp.runtimeconfig.json
+/Users/dani/Projects/ChatApp/ChatApp/bin/Debug/net6.0/ChatApp.dll
+/Users/dani/Projects/ChatApp/ChatApp/bin/Debug/net6.0/ChatApp.pdb
+/Users/dani/Projects/ChatApp/ChatApp/obj/Debug/net6.0/ChatApp.csproj.AssemblyReference.cache
+/Users/dani/Projects/ChatApp/ChatApp/obj/Debug/net6.0/ChatApp.GeneratedMSBuildEditorConfig.editorconfig
+/Users/dani/Projects/ChatApp/ChatApp/obj/Debug/net6.0/ChatApp.AssemblyInfoInputs.cache
+/Users/dani/Projects/ChatApp/ChatApp/obj/Debug/net6.0/ChatApp.AssemblyInfo.cs
+/Users/dani/Projects/ChatApp/ChatApp/obj/Debug/net6.0/ChatApp.csproj.CoreCompileInputs.cache
+/Users/dani/Projects/ChatApp/ChatApp/obj/Debug/net6.0/ChatApp.dll
+/Users/dani/Projects/ChatApp/ChatApp/obj/Debug/net6.0/refint/ChatApp.dll
+/Users/dani/Projects/ChatApp/ChatApp/obj/Debug/net6.0/ChatApp.pdb
+/Users/dani/Projects/ChatApp/ChatApp/obj/Debug/net6.0/ChatApp.genruntimeconfig.cache
+/Users/dani/Projects/ChatApp/ChatApp/obj/Debug/net6.0/ref/ChatApp.dll
