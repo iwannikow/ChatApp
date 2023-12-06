@@ -72,10 +72,6 @@ namespace ChatApp
                 {
                     zeichenkette = System.Text.Encoding.ASCII.GetString(lesePuffer, 0, zahlenkette);
                     Console.WriteLine("Empfangen: " + zeichenkette);
-
-                    // schreibePuffer = new byte[256];
-                    // schreibePuffer = System.Text.Encoding.ASCII.GetBytes(zeichenkette);
-                    // stream.Write(schreibePuffer, 0, schreibePuffer.Length);
                 }
             }
         }
@@ -228,17 +224,11 @@ namespace ChatApp
             if (isServer)
             {
                 Server server = new Server(ip, port);
-                // Thread thread1 = new Thread(new ThreadStart(server.run));
-                // thread1.Start();
-
                 server.run();
             }
             else
             {
                 Client client = new Client(ipString, port);
-                // Thread thread2 = new Thread(new ThreadStart(client.communicate));
-                // thread2.Start();
-
                 client.send();
             }
         }
