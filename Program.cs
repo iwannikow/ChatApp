@@ -9,6 +9,9 @@ namespace ChatApp
     {
         TcpListener server;
         TcpClient client;
+        List<TcpClient> clientList = new List<TcpClient>();
+        List<Session> sessionList = new List<Session>();
+        int sessionID = 0;
         IPAddress ip;
         int port;
 
@@ -28,6 +31,10 @@ namespace ChatApp
                 client = server.AcceptTcpClient();
                 Console.WriteLine("Client hat sich verbunden.");
                 ClientHandler clientHandler = new ClientHandler(client);
+                
+                Session session = new Session(sessionID, server, client);
+                sessionList.Add(session);
+                sessionID++;
                 Thread clientThread = new Thread(clientHandler.communicate);
                 clientThread.Start();
             }
@@ -45,6 +52,14 @@ namespace ChatApp
         public ClientHandler(TcpClient c)
         {
             this.client = c;
+        }
+        public void setClient(TcpClient c)
+        {
+            this.client = c;
+        }
+        public TcpClient getClient()
+        {
+            return client;
         }
         public void communicate()
         {
@@ -66,6 +81,9 @@ namespace ChatApp
     {
         TcpClient client;
         NetworkStream stream;
+        string ip;
+        int port;
+        int clientID;
         Byte[] lesePuffer;
         Byte[] schreibePuffer;
         string zeichenkette;
@@ -101,6 +119,86 @@ namespace ChatApp
         }
     }
 
+    class Message
+    {
+        int senderID;
+        int receiverID;
+        string content = "";
+
+        void setSenderID(int sID)
+        {
+            this.senderID = sID;
+        }
+        int getSenderID()
+        {
+            return senderID;
+        }
+        void setReceiverID(int rID)
+        {
+            this.receiverID = rID;
+        }
+        int getReceiverID()
+        {
+            return receiverID;
+        }
+        void setContent(string c)
+        {
+            this.content = c;
+        }
+        string getContent()
+        {
+            return content;
+        }
+    }
+
+    class Session
+    {
+        int sessionID;
+        TcpListener server;
+        TcpClient client;
+        Message message;
+
+        public Session(int sID, TcpListener s, TcpClient c)
+        {
+            this.sessionID = sID;
+            this.server = s;
+            this.client = c;
+        }
+        
+        void setSessionID(int sID)
+        {
+            this.sessionID = sID;
+        }
+        int getSessionID()
+        {
+            return sessionID;
+        }
+        void setServer(TcpListener s)
+        {
+            this.server = s;
+        }
+        TcpListener getServer()
+        {
+            return server;
+        }
+        void setClient(TcpClient c)
+        {
+            this.client = c;
+        }
+        TcpClient getClient()
+        {
+            return client;
+        }
+        void setMessage(Message m)
+        {
+            this.message = m;
+        }
+        Message getMessage()
+        {
+            return message;
+        }
+    }
+
     class Program
     {
         public static void Main(string[] args)
@@ -122,6 +220,7 @@ namespace ChatApp
                 Console.WriteLine("Ungültiger Modus. Programm wird beendet.");
                 return;
             }
+
             if (isServer)
             {
                 Server server = new Server(ip, port);
