@@ -8,7 +8,7 @@ namespace ChatApp
     class Server
     {
         TcpListener server;
-        TcpClient client;
+        TcpClient tcpClient;
         List<TcpClient> clientList = new List<TcpClient>();
         List<Session> sessionList = new List<Session>();
         int sessionID = 0;
@@ -28,11 +28,11 @@ namespace ChatApp
             Console.WriteLine($"Server gestartet auf {ip}:{port}.");
             while (true)
             {
-                client = server.AcceptTcpClient();
+                tcpClient = server.AcceptTcpClient();
                 Console.WriteLine("Client hat sich verbunden.");
-                ClientHandler clientHandler = new ClientHandler(client);
+                ClientHandler clientHandler = new ClientHandler(tcpClient);
                 
-                Session session = new Session(sessionID, server, client);
+                Session session = new Session(sessionID, server, tcpClient);
                 sessionList.Add(session);
                 sessionID++;
                 Thread clientThread = new Thread(clientHandler.communicate);
@@ -72,10 +72,6 @@ namespace ChatApp
                 {
                     zeichenkette = System.Text.Encoding.ASCII.GetString(lesePuffer, 0, zahlenkette);
                     Console.WriteLine("Empfangen: " + zeichenkette);
-
-                    // schreibePuffer = new byte[256];
-                    // schreibePuffer = System.Text.Encoding.ASCII.GetBytes(zeichenkette);
-                    // stream.Write(schreibePuffer, 0, schreibePuffer.Length);
                 }
             }
         }
@@ -228,17 +224,11 @@ namespace ChatApp
             if (isServer)
             {
                 Server server = new Server(ip, port);
-                // Thread thread1 = new Thread(new ThreadStart(server.run));
-                // thread1.Start();
-
                 server.run();
             }
             else
             {
                 Client client = new Client(ipString, port);
-                // Thread thread2 = new Thread(new ThreadStart(client.communicate));
-                // thread2.Start();
-
                 client.send();
             }
         }
